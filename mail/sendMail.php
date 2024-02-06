@@ -13,6 +13,7 @@ class Mailer
     public function orderMail($title, $content, $mail_order)
     {
         $mail = new PHPMailer(true);
+        $mail->CharSet = 'utf-8';
 
         try {
             // Thiết lập máy chủ

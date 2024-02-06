@@ -422,7 +422,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         . 'Đội ngũ My G-Store';
 
 // Send a single email with all the items listed
-                    $title = 'Đơn hàng';
+                    $title = 'ĐẶT HÀNG THÀNH CÔNG TẠI MY G-STRORE';
                     $mail_order = $_POST['email_tk'];
                     $mail = new Mailer();
                     $mail->orderMail($title, $content, $mail_order);
