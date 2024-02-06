@@ -136,6 +136,9 @@
                                         <input type="radio" id="cashon"  name="paymentmethod" value="cash"
                                                class="custom-control-input" checked/>
                                         <label class="custom-control-label" for="cashon">Thanh toán khi giao hàng</label>
+                                        <span>
+                                            <i class="bi bi-cash-coin" style="font-size: 30px; color: #436850"></i>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="payment-method-details" data-method="cash">
@@ -149,6 +152,9 @@
                                         <input type="radio" id="directbank" name="paymentmethod" value="vnpay"
                                                class="custom-control-input"/>
                                         <label class="custom-control-label" for="">Thanh toán Vnpay</label>
+                                        <span>
+                                            <img width="100px" height="100px" src="../assets_fontend/img/vnpay.jpg">
+                                        </span>
                                     </div>
                                 </div>
                             </div>
