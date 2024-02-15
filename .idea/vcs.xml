@@ -2,7 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/DuAnLapTop" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/mail/PHPMailer" vcs="Git" />
   </component>
 </project>

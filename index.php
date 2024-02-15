@@ -90,7 +90,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "font_end/login-register.php";
             }
             $yourURL = "http://duanlaptop.test/index.php";
-            echo ("<script>location.href='$yourURL'</script>");
+            echo("<script>location.href='$yourURL'</script>");
             break;
         case 'myaccount':
 
@@ -113,7 +113,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case 'log_out':
             session_unset();
             $yourURL = "http://duanlaptop.test/index.php";
-            echo ("<script>location.href='$yourURL'</script>");
+            echo("<script>location.href='$yourURL'</script>");
             include "font_end/my-account.php";
 
             break;
@@ -122,6 +122,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             // echo ("<script>location.href='$yourURL'</script>");
             include "font_end/dohang.php";
             break;
+
+
         case 'cart':
             if (isset($_POST['add_to_cart']) && ($_POST['add_to_cart'])) {
                 $id_sp = $_POST['id_sp'];
@@ -144,33 +146,42 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 if ($product_exists) {
                     // Product already exists in the cart, notify the user
                     echo '
-                    <script>
-                        alert("Sản phẩm đã được thêm vào giỏ hàng");
-                    </script>
-                    ';
+            <script>
+                alert("Sản phẩm đã tồn tại trong giỏ hàng");
+            </script>
+            ';
                 } else {
                     // Product doesn't exist in the cart, add it to the cart
                     array_push($_SESSION['mua_cart'], $sp_add_to_cart);
-                    $yourURL = "http://duanlaptop.test/index.php?act=dohang";
-                    echo ("<script>location.href='$yourURL'</script>");
 
+                    // Alert the user about the successful addition to the cart
+                    echo '
+            <script>
+                alert("Sản phẩm đã được thêm vào giỏ hàng");
+            </script>
+            ';
+
+                    // Redirect to the specified URL
+                    $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+                    echo("<script>location.href='$yourURL'</script>");
                 }
             }
             include "font_end/home.php";
             break;
 
+
         case 'plus_action':
             $_SESSION['mua_cart'][$_GET['idcart']][4] += 1;
             $yourURL = "http://duanlaptop.test/index.php?act=dohang";
-            echo ("<script>location.href='$yourURL'</script>");
+            echo("<script>location.href='$yourURL'</script>");
             break;
+
 
         case 'minus_action':
             $_SESSION['mua_cart'][$_GET['idcart']][4] -= 1;
             $yourURL = "http://duanlaptop.test/index.php?act=dohang";
-            echo ("<script>location.href='$yourURL'</script>");
+            echo("<script>location.href='$yourURL'</script>");
             break;
-
 
 
         case 'update_quantity':
@@ -204,7 +215,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $_SESSION['mua_cart'] = [];
             }
             $yourURL = "http://duanlaptop.test/index.php?act=dohang";
-            echo ("<script>location.href='$yourURL'</script>");
+            echo("<script>location.href='$yourURL'</script>");
             break;
 
         case 'delete_bill':
@@ -219,7 +230,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             $list_bill = load_all_bill1($kwn, 0);
             $yourURL = "http://duanlaptop.test/index.php?act=load_bill";
-            echo ("<script>location.href='$yourURL'</script>");
+            echo("<script>location.href='$yourURL'</script>");
             include "admin/bill/list_bill.php";
             break;
 
@@ -290,7 +301,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             // }
 
 
-
                             //VNPAY THANH TOAN
                             $vnp_TxnRef = $code_order; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này
                             $vnp_OrderInfo = 'Thanh toán hóa đơn Vnpay';
@@ -354,7 +364,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             if (isset($_POST['redirect'])) {
                                 // Nếu có tham số 'redirect', chuyển hướng người dùng đến VNPay
                                 $yourURL = $vnp_Url;
-                                echo ("<script>location.href='$yourURL'</script>");
+                                echo("<script>location.href='$yourURL'</script>");
                             } else {
                                 // Nếu không, trả về JSON
                                 echo json_encode($returnData);
@@ -373,7 +383,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             $ngay_dat_hang = date('h:i:sa d/m/Y');
                             $tongtien_bill = tong_donhang();
                             $yourURL = "http://duanlaptop.test/index.php?act=load_bill";
-                            echo ("<script>location.href='$yourURL'</script>");
+                            echo("<script>location.href='$yourURL'</script>");
                         }
 
                     }
