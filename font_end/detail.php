@@ -92,6 +92,7 @@
                                     outline: none;
                                     border-radius: 0;
                                     font-size: 1.4rem;">
+                                    
                                 </div>
                                 </form>
                                 ';
@@ -177,11 +178,9 @@
     </div>
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- <script>
   function add() {
-   
+
     // Lấy giá trị số lượng từ ô input
     var quantity = $("#quantity").val();
 
@@ -192,30 +191,5 @@
     alert("Đã thêm vào giỏ hàng!");
   }
 </script> -->
-<!-- Đoạn mã Ajax -->
-<script>
-    $(document).ready(function(){
-        $('.add-to-cart-btn').on('click', function(){
-            var productId = $(this).data('product-id');
-            var productName = $(this).data('product-name');
-            var productPrice = $(this).data('product-price');
-            
-            // Gửi dữ liệu sản phẩm đến server bằng Ajax
-            $.ajax({
-                url: 'your_php_file.php', // Thay đổi thành đường dẫn tới file xử lý thêm vào giỏ hàng
-                type: 'POST',
-                data: {
-                    add_to_cart: true,
-                    id_sp: productId,
-                    name_sp: productName,
-                    price_sp: productPrice,
-                    soluong: 1  // Đặt số lượng mặc định là 1 nếu không có trường số lượng trên giao diện người dùng
-                },
-                success: function(response){
-                    // Xử lý kết quả trả về từ server (nếu cần)
-                    console.log(response);
-                }
-            });
-        });
-    });
-</script>
+
+

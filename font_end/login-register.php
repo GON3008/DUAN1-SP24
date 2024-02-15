@@ -274,7 +274,7 @@
                 <input id="my-login" class="" type="text" name="name_tk" placeholder="Nhập Tên">
                 <input id="my-login" class="" type="password" name="pass_tk" placeholder="Nhập Password">
                 <div class="float-right mb-3">
-                    <a href="#">Quên mật khẩu?</a>
+                    <a href="index.php?act=forgot_password">Quên mật khẩu?</a>
                 </div>
                 <br>
                 <div class="single-input-item">

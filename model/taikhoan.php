@@ -38,4 +38,10 @@ function load_one_tk($id_tk)
         $sql = "UPDATE taikhoan set name_tk = '". $name_tk ."', pass_tk = '".$pass_tk."', email_tk = '".$email_tk."' , address_tk = '".$address_tk."', tel_tk ='".$tel_tk."' where id_tk=".$id_tk;
         pdo_execute($sql);
     }
+
+//  function get_user_by_email($email_forgot){
+//    $sql = "select * from taikhoan where email_tk = '$email_forgot'";
+//    $params = array('email_tk' => $email_forgot);
+//    $user = pdo_query_one($sql, $params);
+//  }
 ?>

@@ -92,25 +92,30 @@ function delete_bill1($id)
     pdo_query($sql);
 }
 
-function get_ttdh($trangthai)
+function get_ttdh($trangthai, $pttt_bill)
 {
     switch ($trangthai) {
         case '0':
-            $tt = "Đơn hàng mới&chưa thanh toán";
+            if ($pttt_bill == '2') {
+                $tt = "Đơn hàng mới & đã thanh toán VNPay";
+            } else {
+                $tt = "Đơn hàng mới & chưa thanh toán";
+            }
             break;
         case '1':
-            $tt = "Đang sử lý&chưa thanh toán";
+            $tt = "Đơn hàng đang sử lý";
             break;
         case '2':
-            $tt = "Đang giao hàng&chưa thanh toán";
+            $tt = "Đang tiến hành giao hàng";
             break;
         case '3':
-            $tt = "Giao thành công&đã thanh toán";
+            $tt = "Giao thành công & đã thanh toán";
             break;
         default:
             $tt = "Đơn hàng mới";
             break;
     }
+
     return $tt;
 }
 

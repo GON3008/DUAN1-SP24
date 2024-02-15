@@ -30,11 +30,11 @@
                                 foreach ($list_bill as $bill) {
                                     $xoasp = "index.php?act=delete_bill&id_bill=".$bill["id_bill"];
                                     extract($bill);
-                                    $trang_thai_dh = get_ttdh($bill['status_bill']);
+                                    $trang_thai_dh = get_ttdh($bill['status_bill'], $bill['pttt_bill']);
                                     $sl_sp = dem_sl_mat_hang($bill['id_bill']);
 
                                     // Check if the order is "Đơn hàng mới" and not yet paid
-                                    $isCancelable = ($bill['status_bill'] == '0');
+                                    $isCancelable = ($bill['status_bill'] == '0') && ($bill['pttt_bill'] == '1');
 
                                     echo '<tr>';
                                     echo '<td class="pro-thumbnail">' . $bill['id_bill'] . '</td>';
@@ -57,7 +57,7 @@
                                         </td>';
 
                                     } else {
-                                        echo '<td class="pro-title">Không thể hủy đơn hàng</td>'; // Empty cell if not cancelable
+                                        echo '<td class="pro-title text-danger">Không thể hủy đơn hàng</td>'; // Empty cell if not cancelable
                                     }
 
                                     echo '</tr>';

@@ -117,6 +117,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "font_end/my-account.php";
 
             break;
+
+
         case 'dohang':
             // $yourURL = "http://duanlaptop.test/index.php?act=dohang";
             // echo ("<script>location.href='$yourURL'</script>");
