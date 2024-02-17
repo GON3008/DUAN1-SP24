@@ -41,12 +41,13 @@
                                     <td class="pro-quantity">
                                     <div class="pro-qty">
                                     <a href="index.php?act=minus_action&idcart=' . $i . '">-</a>
-                                    <input type="number" id="quantity<?php echo $i; ?>" name="soluong" min="1" disabled value=' . $cart[4] . '>
-                                    <a href="index.php?act=plus_action&idcart=' . $i . '">+</a> 
+                                    <input type="number" id="quantity_' . $i . '" name="soluong" min="1" disabled value=' . $cart[4] . '>
+                                    <a href="#" class="plus-button" data-idcart="' . $i . '">+</a>
                                     </div>
                                     </td>
                                     <td class="pro-remove">' . $xoa_cart . '</td>
                                     </tr>
+                                   
                                     ';
                             $i += 1;
                         }
@@ -131,15 +132,58 @@
     }
 
     function confirmDesactiv1() {
-        if (confirm("Xin vui lòng nhập Tài khoản!")){
-            window.location.href = "index.php?act=login";
+        if (confirm("Xin vui lòng nhập Tài khoản!")) {
+            window.location.href = "http://duanlaptop.test/index.php?act=login";
         }
     }
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // Thêm sự kiện cho nút tăng số lượng
+    $('.plus-button').on('click', function (e) {
+        e.preventDefault();
+        var idCart = $(this).data('idcart');
+        updateQuantity(idCart, 'plus_action');
+    });
+
+    // Thêm sự kiện cho nút giảm số lượng
+    $('.minus-button').on('click', function (e) {
+        e.preventDefault();
+        var idCart = $(this).data('idcart');
+        updateQuantity(idCart, 'minus_action');
+    });
+
+    function updateQuantity(idCart, action) {
+        // Gửi AJAX request để cập nhật số lượng
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?act=update_quantity',
+            data: {idcart: idCart, action: action},
+            dataType: 'json',
+            encode: true
+        })
+            .done(function (response) {
+                if (response.status === 'success') {
+                    // Cập nhật số lượng mới trên giao diện
+                    $('#quantity_' + idCart).val(response.newQuantity);
+
+                    // Cập nhật tổng giá mới nếu có
+                    if (typeof response.newTotalPrice !== 'undefined') {
+                        // Cập nhật giá trị tổng giá ở đây, ví dụ:
+                        $('#totalPrice').text(response.newTotalPrice);
+                    }
+                } else {
+                    alert(response.message);
+                }
+            })
+            .fail(function (response) {
+                console.log(response);
+            });
+    }
+</script>
 
 
+<!-- Your other HTML and script tags -->
 
 
 <!-- <a href="index.php?act=minus_action&idcart=' . $i . '">-</a>

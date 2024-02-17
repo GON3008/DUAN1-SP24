@@ -92,7 +92,7 @@
                                     outline: none;
                                     border-radius: 0;
                                     font-size: 1.4rem;">
-                                    
+                            
                                 </div>
                                 </form>
                                 ';
@@ -178,18 +178,6 @@
     </div>
 </div>
 
-<!-- <script>
-  function add() {
 
-    // Lấy giá trị số lượng từ ô input
-    var quantity = $("#quantity").val();
-
-    // Gọi hàm updateCartCount từ header.php để cập nhật số lượng
-    window.parent.updateCartCount(quantity);
-
-    // Hiển thị thông báo (nếu cần)
-    alert("Đã thêm vào giỏ hàng!");
-  }
-</script> -->
 
 
