@@ -172,65 +172,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
 
-//        case 'plus_action':
-//            $_SESSION['mua_cart'][$_GET['idcart']][4] += 1;
-//            $yourURL = "http://duanlaptop.test/index.php?act=dohang";
-//            echo("<script>location.href='$yourURL'</script>");
-//            break;
-//
-//
-//        case 'minus_action':
-//            $_SESSION['mua_cart'][$_GET['idcart']][4] -= 1;
-//            $yourURL = "http://duanlaptop.test/index.php?act=dohang";
-//            echo("<script>location.href='$yourURL'</script>");
-//            break;
+       case 'plus_action':
+           $_SESSION['mua_cart'][$_GET['idcart']][4] += 1;
+           $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+           echo("<script>location.href='$yourURL'</script>");
+           break;
 
 
-        case 'update_quantity':
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idcart']) && isset($_POST['action'])) {
-                $idCart = $_POST['idcart'];
-                $action = $_POST['action'];
+       case 'minus_action':
+           $_SESSION['mua_cart'][$_GET['idcart']][4] -= 1;
+           $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+           echo("<script>location.href='$yourURL'</script>");
+           break;
 
-                // Thực hiện cập nhật số lượng ở đây dựa vào $action và $idCart
-                if ($action === 'plus_action') {
-                    $_SESSION['mua_cart'][$idCart][4] += 1;
-                } elseif ($action === 'minus_action') {
-                    $_SESSION['mua_cart'][$idCart][4] -= 1;
-                    // Đảm bảo số lượng không dưới 1
-                    if ($_SESSION['mua_cart'][$idCart][4] < 1) {
-                        $_SESSION['mua_cart'][$idCart][4] = 1;
-                    }
-                }
-
-                // Tính toán lại tổng giá của toàn bộ giỏ hàng
-                $newTotalPrice = calculateTotalPrice();
-
-                // Trả về kết quả dưới dạng JSON
-                $response = array(
-                    'status' => 'success',
-                    'newQuantity' => $_SESSION['mua_cart'][$idCart][4],
-                    'newTotalPrice' => $newTotalPrice
-                );
-                echo json_encode($response);
-            } else {
-                // Trả về lỗi nếu có
-                $response = array(
-                    'status' => 'error',
-                    'message' => 'Invalid request'
-                );
-                echo json_encode($response);
-            }
-            include "font_end/dohang.php";
-            break;
-
-            function calculateTotalPrice()
-            {
-                $totalPrice = 0;
-                foreach ($_SESSION['mua_cart'] as $cartItem) {
-                    $totalPrice += $cartItem[3] * $cartItem[4];
-                }
-                return $totalPrice;
-            }
 
 
         case 'delete_cart':

@@ -153,12 +153,6 @@ function loadall_thongke_bieudo()
     return $list_tk;
 }
 
-function loadall_thongke_tien_thang()
-{
-    $sql = "select * from bill";
-    $list_tk = pdo_query($sql);
-    return $list_tk;
-}
 
 
 

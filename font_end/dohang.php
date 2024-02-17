@@ -13,26 +13,26 @@
                 <div class="cart-table table-responsive">
                     <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th class="text-dark pro-thumbnail">Ảnh sản phẩm</th>
-                            <th class="text-dark pro-title">Tên sản phẩm</th>
-                            <th class="text-dark pro-price">Giá</th>
-                            <th class="text-dark pro-subtotal">Số lượng</th>
-                            <th class="text-dark pro-remove">Action</th>
-                        </tr>
+                            <tr>
+                                <th class="text-dark pro-thumbnail">Ảnh sản phẩm</th>
+                                <th class="text-dark pro-title">Tên sản phẩm</th>
+                                <th class="text-dark pro-price">Giá</th>
+                                <th class="text-dark pro-subtotal">Số lượng</th>
+                                <th class="text-dark pro-remove">Action</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        $tongtien = 0;
-                        $totalQuantity = 0;
-                        $i = 0;
-                        foreach ($_SESSION['mua_cart'] as $cart) {
-                            $hinh = "upload/" . $cart[2];
-                            $ttien = $cart[3] * $cart[4];
-                            $totalQuantity += $cart[4];
-                            $format_number_1 = number_format($cart[3]);
-                            $xoa_cart = '<a href="index.php?act=delete_cart&idcart=' . $i . '"><input type="button" value="Xóa"></a>';
-                            echo '
+                            <?php
+                            $tongtien = 0;
+                            $totalQuantity = 0;
+                            $i = 0;
+                            foreach ($_SESSION['mua_cart'] as $cart) {
+                                $hinh = "upload/" . $cart[2];
+                                $ttien = $cart[3] * $cart[4];
+                                $totalQuantity += $cart[4];
+                                $format_number_1 = number_format($cart[3]);
+                                $xoa_cart = '<a href="index.php?act=delete_cart&idcart=' . $i . '"><input type="button" value="Xóa"></a>';
+                                echo '
                                     <tr>
                                     <td class="pro-thumbnail"><img class="img-fluid" src="' . $hinh . '"
                                                                        alt="Product"/></td>
@@ -41,17 +41,17 @@
                                     <td class="pro-quantity">
                                     <div class="pro-qty">
                                     <a href="index.php?act=minus_action&idcart=' . $i . '">-</a>
-                                    <input type="number" id="quantity_' . $i . '" name="soluong" min="1" disabled value=' . $cart[4] . '>
-                                    <a href="#" class="plus-button" data-idcart="' . $i . '">+</a>
+                                    <input type="number" id="quantity_<?php echo $i; ?>" name="soluong" min="1" disabled value=' . $cart[4] . '>
+                                    <a href="index.php?act=plus_action&idcart=' . $i . '">+</a> 
                                     </div>
                                     </td>
                                     <td class="pro-remove">' . $xoa_cart . '</td>
                                     </tr>
                                    
                                     ';
-                            $i += 1;
-                        }
-                        ?>
+                                $i += 1;
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -138,49 +138,7 @@
     }
 </script>
 
-<script>
-    // Thêm sự kiện cho nút tăng số lượng
-    $('.plus-button').on('click', function (e) {
-        e.preventDefault();
-        var idCart = $(this).data('idcart');
-        updateQuantity(idCart, 'plus_action');
-    });
 
-    // Thêm sự kiện cho nút giảm số lượng
-    $('.minus-button').on('click', function (e) {
-        e.preventDefault();
-        var idCart = $(this).data('idcart');
-        updateQuantity(idCart, 'minus_action');
-    });
-
-    function updateQuantity(idCart, action) {
-        // Gửi AJAX request để cập nhật số lượng
-        $.ajax({
-            type: 'POST',
-            url: 'index.php?act=update_quantity',
-            data: {idcart: idCart, action: action},
-            dataType: 'json',
-            encode: true
-        })
-            .done(function (response) {
-                if (response.status === 'success') {
-                    // Cập nhật số lượng mới trên giao diện
-                    $('#quantity_' + idCart).val(response.newQuantity);
-
-                    // Cập nhật tổng giá mới nếu có
-                    if (typeof response.newTotalPrice !== 'undefined') {
-                        // Cập nhật giá trị tổng giá ở đây, ví dụ:
-                        $('#totalPrice').text(response.newTotalPrice);
-                    }
-                } else {
-                    alert(response.message);
-                }
-            })
-            .fail(function (response) {
-                console.log(response);
-            });
-    }
-</script>
 
 
 <!-- Your other HTML and script tags -->
