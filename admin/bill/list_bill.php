@@ -22,7 +22,7 @@
                     $xoasp = "index.php?act=xoabill&id_bill=".$key["id_bill"];
 
                     $slhang = dem_sl_mat_hang($key["id_bill"]);
-                    $status_product = get_ttdh($key["status_bill"]);
+                    $status_product = get_ttdh($key['status_bill'], $key['pttt_bill']);
                     echo '
                                 <tr style="border-bottom: 1px solid #B2B2B2;">
                                 <td> ' . $key["id_bill"].'</td>
