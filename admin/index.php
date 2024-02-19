@@ -6,6 +6,9 @@ include "header.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/cart.php";
+require "carbon/autoload.php";
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -259,11 +262,50 @@ if (isset($_GET['act'])) {
             break;
 
         case 'bieudo':
-            $list_tk1 = loadall_thongke_bieudo();
+//            $dburl = "mysql:host=localhost;dbname=du_an_1;charset=utf8";
+//            $username = 'root';
+//            $password = '';
+//
+//            try {
+//                $pdo = new PDO($dburl, $username, $password);
+//                // Set PDO to throw exceptions on errors
+//                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//
+//                $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->toDateString();
+//                $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+//
+//                // Use prepared statement to prevent SQL injection
+//                $sql = "SELECT * FROM thongke WHERE ngaydat BETWEEN :subdays AND :now ORDER BY ngaydat ASC";
+//                $stmt = $pdo->prepare($sql);
+//                $stmt->bindParam(':subdays', $subdays, PDO::PARAM_STR);
+//                $stmt->bindParam(':now', $now, PDO::PARAM_STR);
+//                $stmt->execute();
+//
+//                $chart_data = [];
+//                while ($val = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//                    $chart_data[] = array(
+//                        'date' => $val['ngaydat'],
+//                        'order' => $val['donhang'],
+//                        'sales' => $val['doanhthu'],
+//                        'quantity' => $val['soluong']
+//                    );
+//                }
+//
+//                echo json_encode($chart_data);
+//                include "thongke/bieu_do.php";
+//            } catch (PDOException $e) {
+//                echo 'Connection failed: ' . $e->getMessage();
+//                // Log the error or handle it more gracefully in a production environment
+//            }
             include "thongke/bieu_do.php";
             break;
+
+
+
+
+
         case 'doanhthu':
-            $list_tk_tien_thang = loadall_thongke_tien_thang();
+            $list_tk_tien_thang = loadall_thongke();
             include 'thongke/doanhthu.php';
             break;
         default:

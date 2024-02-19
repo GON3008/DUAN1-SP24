@@ -2,6 +2,7 @@
 
 session_start();
 require "mail/sendMail.php";
+require "admin/carbon/autoload.php";
 include "model/pdo.php";
 include "model/sanpham.php";
 include "global.php";
@@ -11,6 +12,8 @@ include "model/cart.php";
 include_once "config_vnpay.php";
 $danhmuc_all = load_danh_all();
 include "font_end/header.php";
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 $spnew = load_sp_home();
 $spnew1 = load_sp_home2();
 $spnew2 = load_sp_home1();
@@ -20,6 +23,7 @@ $spnew5 = load_sp_home5();
 $spnew6 = load_sp_home6();
 $spnew7 = load_sp_home7();
 
+$now = Carbon::now('Asia/Ho_Chi_Minh');
 $code_order = rand(0, 99999);
 
 if (!isset($_SESSION['mua_cart']))
@@ -270,7 +274,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             $tel_bill = $_POST['tel_tk'];
                             $ordernote_bill = $_POST['ordernote'];
                             $pttt_bill = 2;
-                            $ngay_dat_hang = date('h:i:sa d/m/Y');
+                            $ngay_dat_hang = $now;
+//                            $ngay_dat_hang = date('h:i:sa d/m/Y');
                             $tongtien_bill = tong_donhang();
                             // }else
                             // {
@@ -359,7 +364,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             $tel_bill = $_POST['tel_tk'];
                             $ordernote_bill = $_POST['ordernote'];
                             $pttt_bill = 1;
-                            $ngay_dat_hang = date('h:i:sa d/m/Y');
+                            $ngay_dat_hang = $now;
                             $tongtien_bill = tong_donhang();
                             $yourURL = "http://duanlaptop.test/index.php?act=load_bill";
                             echo("<script>location.href='$yourURL'</script>");
