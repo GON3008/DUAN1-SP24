@@ -363,6 +363,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             $address_bill = $_POST['address_tk'];
                             $tel_bill = $_POST['tel_tk'];
                             $ordernote_bill = $_POST['ordernote'];
+//                            $soluong_bill = dem_sl_mat_hang($id_bill);
                             $pttt_bill = 1;
                             $ngay_dat_hang = $now;
                             $tongtien_bill = tong_donhang();

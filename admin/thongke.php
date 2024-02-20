@@ -12,25 +12,27 @@ try {
     $pdo = new PDO($dburl, $username, $password);
     // Set PDO to throw exceptions on errors
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    if(isset($_POST['timer'])){
-        $timer = $_POST['timer'];
+    if(isset($_POST['thoigian'])){
+        $thoigian = $_POST['thoigian'];
     }else{
-        $timer = "";
+        $thoigian = '';
         $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->toDateString();
     }
 
-    if ($timer == '7ngay') {
+    if ($thoigian == '7ngay') {
         $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(7)->toDateString();
-    }elseif ($timer == '30ngay') {
-        $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(30)->toDateString();
-    }elseif ($timer == '365ngay') {
+    }elseif ($thoigian == '28ngay') {
+        $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(28)->toDateString();
+    }elseif ($thoigian == '90ngay') {
+        $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(90)->toDateString();
+    }elseif ($thoigian == '365ngay') {
         $subdays = Carbon::now('Asia/Ho_Chi_Minh')->subDays(365)->toDateString();
     }
 
     $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
     // Use prepared statement to prevent SQL injection
-    $sql = "SELECT * FROM thongke WHERE ngaydat BETWEEN :subdays AND :now ORDER BY ngaydat ASC";
+    $sql = "SELECT * FROM bill WHERE ngaydathang BETWEEN :subdays AND :now ORDER BY ngaydathang ASC";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':subdays', $subdays, PDO::PARAM_STR);
     $stmt->bindParam(':now', $now, PDO::PARAM_STR);
@@ -39,10 +41,11 @@ try {
     $chart_data = [];
     while ($val = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $chart_data[] = array(
-            'date' => $val['ngaydat'],
-            'order' => $val['donhang'],
-            'sales' => $val['doanhthu'],
-            'quantity' => $val['soluong']
+            'total' => $val['tongtien_bill'],
+            'date' => $val['ngaydathang'],
+//            'order' => $val['name_bill'],
+//            'sales' => $val['tongtien_bill'],
+//            'quantity' => $val['pttt_bill']
         );
     }
     echo $data = json_encode($chart_data);

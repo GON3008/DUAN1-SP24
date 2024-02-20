@@ -15,6 +15,8 @@ function tong_donhang()
     return $tong;
 }
 
+
+
 function insert_bill($id_user, $name_bill, $email_bill, $address_bill, $tel_bill, $ordernote_bill, $tongtien_bill, $pttt_bill
     ,                $ngaydathang, $vnp_Amount, $vnp_BankCode, $vnp_BankTranNo, $vnp_CardType, $vnp_OrderInfo, $vnp_PayDate, $vnp_TmnCode, $vnp_TransactionNo, $code_order)
 {
@@ -152,7 +154,12 @@ function loadall_thongke_bieudo()
     $list_tk = pdo_query($sql);
     return $list_tk;
 }
-
+function loadall_thongke_tien_thang()
+{
+    $sql = "select * from bill";
+    $list_tk = pdo_query($sql);
+    return $list_tk;
+}
 
 
 

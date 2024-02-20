@@ -7,8 +7,10 @@ include "../model/taikhoan.php";
 include "../model/binhluan.php";
 include "../model/cart.php";
 require "carbon/autoload.php";
+
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
@@ -301,11 +303,8 @@ if (isset($_GET['act'])) {
             break;
 
 
-
-
-
         case 'doanhthu':
-            $list_tk_tien_thang = loadall_thongke();
+            $list_tk_tien_thang = loadall_thongke_tien_thang();
             include 'thongke/doanhthu.php';
             break;
         default:

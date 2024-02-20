@@ -1,9 +1,12 @@
 <h1 class="pt-5 text-center">Thống kê theo biểu đồ: <span id="text-date"></span></h1>
-<select class="select-date">
-    <option value="7ngay">7 ngày</option>
-    <option value="30ngay">30 ngày</option>
-    <option value="365ngay">365 ngày</option>
-</select>
+<div>
+    <select class="select-date">
+        <option value="7ngay">7 ngày qua</option>
+        <option value="28ngay">28 ngày qua</option>
+        <option value="90ngay">90 ngày qua</option>
+        <option value="365ngay">365 ngày qua</option>
+    </select>
+</div>
 <div id="chart" style="height: 250px;"></div>
 
 
@@ -13,23 +16,25 @@
         var chart = new Morris.Area({
             element: "chart",
             xkey: "date",
-            ykeys: ["date", "order", "sales", "quantity"],
-            labels: ["Ngày", "Đơn hàng", "Doanh thu", "Số lượng"],
+            ykeys: ["date","total"],
+            labels: ["Ngày","Tổng"],
         });
         $('.select-date').change(function () {
-            var timer = $(this).val();
-            if (timer == "7ngay") {
-                var text = "7 ngày";
-            } else if (timer == "30ngay") {
-                var text = "30 ngày";
+            var thoigian = $(this).val();
+            if (thoigian == '7ngay') {
+                var text = "7 ngày qua";
+            } else if (thoigian == '28ngay') {
+                var text = "28 ngày qua";
+            } else if (thoigian == '90ngay') {
+                var text = "90 ngày qua";
             } else {
-                var text = "365 ngày";
+                var text = "365 ngày qua";
             }
             $.ajax({
                 url: "thongke.php",
                 method: "POST",
                 dataType: "JSON",
-                data: {timer: timer},
+                data: {thoigian: thoigian},
                 success: function (data) {
                     chart.setData(data);
                     $("#text-date").text(text);
