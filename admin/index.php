@@ -60,7 +60,6 @@ if (isset($_GET['act'])) {
             break;
 
         case 'bieudo':
-            $list_tk1 = loadall_thongke_bieudo();
             include "thongke/bieu_do.php";
             break;
         case 'doanhthu':
