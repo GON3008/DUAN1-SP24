@@ -93,7 +93,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
                 include "font_end/login-register.php";
             }
-            $yourURL = "http://duanlaptop.test/index.php";
+            $yourURL = "index.php";
             echo("<script>location.href='$yourURL'</script>");
             break;
         case 'myaccount':
@@ -168,7 +168,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             ';
 
                     // Redirect to the specified URL
-                    $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+                    $yourURL = "index.php?act=dohang";
                     echo("<script>location.href='$yourURL'</script>");
                 }
             }
@@ -178,14 +178,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
        case 'plus_action':
            $_SESSION['mua_cart'][$_GET['idcart']][4] += 1;
-           $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+           $yourURL = "index.php?act=dohang";
            echo("<script>location.href='$yourURL'</script>");
            break;
 
 
        case 'minus_action':
            $_SESSION['mua_cart'][$_GET['idcart']][4] -= 1;
-           $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+           $yourURL = "index.php?act=dohang";
            echo("<script>location.href='$yourURL'</script>");
            break;
 
@@ -197,7 +197,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             } else {
                 $_SESSION['mua_cart'] = [];
             }
-            $yourURL = "http://duanlaptop.test/index.php?act=dohang";
+            $yourURL = "index.php?act=dohang";
             echo("<script>location.href='$yourURL'</script>");
             break;
 
@@ -212,7 +212,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $kwn = "";
             }
             $list_bill = load_all_bill1($kwn, 0);
-            $yourURL = "http://duanlaptop.test/index.php?act=load_bill";
+            $yourURL = "index.php?act=load_bill";
             echo("<script>location.href='$yourURL'</script>");
             include "admin/bill/list_bill.php";
             break;
@@ -367,7 +367,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             $pttt_bill = 1;
                             $ngay_dat_hang = $now;
                             $tongtien_bill = tong_donhang();
-                            $yourURL = "http://duanlaptop.test/index.php?act=load_bill";
+                            $yourURL = "index.php?act=load_bill";
                             echo("<script>location.href='$yourURL'</script>");
                         }
 

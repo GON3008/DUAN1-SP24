@@ -61,7 +61,7 @@
             <div class="row">
                 <!-- Logo Area Start -->
                 <div class="col-4 col-md-2 col-xl-3 m-auto text-center text-lg-left">
-                    <a href="index.html" class="logo-wrap d-block">
+                    <a href="index.php?act=go_home" class="logo-wrap d-block">
                         <img src="assets/images/Airazor.png" alt="Airazor" class="img-fluid"
                              style="width: 100px;"/>
 

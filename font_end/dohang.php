@@ -133,7 +133,7 @@
 
     function confirmDesactiv1() {
         if (confirm("Xin vui lòng nhập Tài khoản!")) {
-            window.location.href = "http://duanlaptop.test/index.php?act=login";
+            window.location = "login-register.php";
         }
     }
 </script>
