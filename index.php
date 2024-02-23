@@ -30,7 +30,50 @@ if (!isset($_SESSION['cart']))
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
-       
+        case 'login':
+            include "font_end/login-register.php";
+            break;
+        case 'dangky':
+            if (isset($_POST['dangky']) && ($_POST['dangky'])) {
+                $name_tk = $_POST['name_tk'];
+                $pass_tk = $_POST['pass_tk'];
+                $email_tk = $_POST['email_tk'];
+                $address_tk = $_POST['address_tk'];
+                $tel_tk = $_POST['tel_tk'];
+                insert_taikhoan($name_tk, $pass_tk, $email_tk, $address_tk, $tel_tk);
+                $thongbao = "chúc mừng bạn đã đăng ký thành công";
+            }
+            include "font_end/login-register.php";
+            break;
+        case 'dangnhap':
+            if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
+                $name_tk = $_POST['name_tk'];
+                $pass_tk = $_POST['pass_tk'];
+                $checktk = checklogin($name_tk, $pass_tk);
+                if ($checktk) {
+                    $_SESSION['user'] = $checktk;
+                    $thongbao = "Đăng nhập thành công";
+                    // include "font_end/login-register.php";
+                } else {
+                    $thongbao = "Đăng nhập Thất bại xin vui lòng nhập lại";
+                    // include "font_end/login-register.php";
+                }
+                include "font_end/login-register.php";
+            }
+            $yourURL = "http://localhost/DuAnLapTop/DuAnLapTop/index.php?";
+            echo ("<script>location.href='$yourURL'</script>");
+            break;
+        case 'myaccount':
+
+            include "font_end/my-account.php";
+            break;
+            case 'log_out':
+                session_unset();
+                $yourURL = "http://localhost/DuAnLapTop/DuAnLapTop/index.php?";
+                echo ("<script>location.href='$yourURL'</script>");
+                include "font_end/my-account.php";
+    
+                break;
         case 'dohang':
             // $yourURL = "http://duanlaptop.test/index.php?act=dohang";
             // echo ("<script>location.href='$yourURL'</script>");
