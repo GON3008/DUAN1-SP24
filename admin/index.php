@@ -60,6 +60,10 @@ if (isset($_GET['act'])) {
             $xuatBL = load_binhluan1_all(0);
             include "binhluan/list_bl.php";
             break;
+        case 'xoabl':
+            if (isset($_GET['id_bl']) && ($_GET['id_bl'])) {
+                delete_bl($_GET['id_bl']);
+            }
         case 'don_hang':
             if (isset($_POST['kwn']) && ($_POST['kwn'] != "")) {
                 $kwn = $_POST['kwn'];
