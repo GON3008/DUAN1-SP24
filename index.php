@@ -46,6 +46,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $soluong = $_POST['soluong'];
                 $sp_add_to_cart = [$id_sp, $name_sp, $img_sp, $price_sp, $soluong];
                 array_push($_SESSION['mua_cart'], $sp_add_to_cart);
+                $_SESSION['cart'] = $soluong;
+                $response = array(
+                    'cartItems' => count($_SESSION['cart'])
+                );
+                echo json_encode($response);
+            }
+            // include "font_end/show_product.php";
+            break;
         case 'go_home':
             $list_bill = load_all_bill1();
             include "font_end/home.php";
