@@ -28,15 +28,23 @@ if (isset($_GET['act'])) {
             }
             include "danhmuc/danhmuc_add.php";
             break;
-            case 'listdm':
-                $xuatDM = load_danh_all();
-                include "danhmuc/danhmuc_list.php";
-                break;
-            case 'suadm':
-                if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'] > 0)) {
-                    $sua_dm = load_one($_GET['id_danhmuc']);
+        case 'listdm':
+            $xuatDM = load_danh_all();
+            include "danhmuc/danhmuc_list.php";
+            break;
+        case 'suadm':
+            if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'] > 0)) {
+                $sua_dm = load_one($_GET['id_danhmuc']);
+            }
+            include "danhmuc/danhmuc_update.php";
+            break;
+            case 'xoadm':
+                if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'])) {
+                    delete_danhmuc($_GET['id_danhmuc']);
                 }
-                include "danhmuc/danhmuc_update.php";
+                $sql = " select * from danhmuc order by id_danhmuc";
+                $xuatDM = pdo_query($sql);
+                include "danhmuc/danhmuc_list.php";
                 break;
         case 'don_hang':
             if (isset($_POST['kwn']) && ($_POST['kwn'] != "")) {
