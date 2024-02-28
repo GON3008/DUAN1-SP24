@@ -240,7 +240,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
        
-      
+        
         default:
             include "font_end/home.php";
             break;
