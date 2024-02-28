@@ -33,25 +33,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case 'login':
             include "font_end/login-register.php";
             break;
-      
-        case 'dangnhap':
-            if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
-                $name_tk = $_POST['name_tk'];
-                $pass_tk = $_POST['pass_tk'];
-                $checktk = checklogin($name_tk, $pass_tk);
-                if ($checktk) {
-                    $_SESSION['user'] = $checktk;
-                    $thongbao = "Đăng nhập thành công";
-                    // include "font_end/login-register.php";
-                } else {
-                    $thongbao = "Đăng nhập Thất bại xin vui lòng nhập lại";
-                    // include "font_end/login-register.php";
+            case 'dangky':
+                if (isset($_POST['dangky']) && ($_POST['dangky'])) {
+                    $name_tk = $_POST['name_tk'];
+                    $pass_tk = $_POST['pass_tk'];
+                    $email_tk = $_POST['email_tk'];
+                    $address_tk = $_POST['address_tk'];
+                    $tel_tk = $_POST['tel_tk'];
+                    insert_taikhoan($name_tk, $pass_tk, $email_tk, $address_tk, $tel_tk);
+                    $thongbao = "chúc mừng bạn đã đăng ký thành công";
                 }
                 include "font_end/login-register.php";
-            }
-            $yourURL = "http://localhost/DuAnLapTop/DuAnLapTop/index.php?";
-            echo ("<script>location.href='$yourURL'</script>");
-            break;
+                break;
+      
         case 'myaccount':
 
             include "font_end/my-account.php";
@@ -229,7 +223,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
        
-        
+      
         default:
             include "font_end/home.php";
             break;
