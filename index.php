@@ -255,7 +255,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
 
-       
+            case 'show_product':
+                if (isset($_GET["id_sp"]) && ($_GET['id_sp'] > 0)) {
+                    $id = $_GET['id_sp'];
+                    $one_sp = load_one_sanpham($id);
+                    extract($one_sp);
+                    $sp_cung_loai = sanpham_cungloai($id, $id_danhmuc);
+                    include "font_end/detail.php";
+                }
+                include "font_end/show_product.php";
+                break;
       
         default:
             include "font_end/home.php";
