@@ -9,7 +9,25 @@ include "../model/cart.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
-
+        case 'adddm':
+            if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
+                if ($_POST['tenloai'] == '') {
+                    echo '
+                        <script>
+                        function thongbao(){
+                         alert("Xin vui lòng nhập vào ô trống !");
+                        }
+                        thongbao();
+                        </script>
+                        ';
+                } else {
+                    $tenloai = $_POST['tenloai'];
+                    insert_danhmuc($tenloai);
+                    $thongbao = "Thêm thành công";
+                }
+            }
+            include "danhmuc/danhmuc_add.php";
+            break;
         case 'don_hang':
             if (isset($_POST['kwn']) && ($_POST['kwn'] != "")) {
                 $kwn = $_POST['kwn'];
