@@ -174,6 +174,13 @@ if (isset($_GET['act'])) {
                     $listsanpham = load_sanpham("", 0);
                     include "sanpham/sanpham_list.php";
                     break;
+                    case 'suasp':
+                        if (isset($_GET['id_sp']) && ($_GET['id_sp'] > 0)) {
+                            $sanpham = load_one_sanpham($_GET['id_sp']);
+                        }
+                        $listDM = load_danh_all();
+                        include "sanpham/sanpham_update.php";
+                        break;
             case 'updatesp':
                 if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
                     $id_sp = $_POST['id_sp'];
