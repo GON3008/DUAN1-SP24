@@ -302,6 +302,20 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                              ';
                             include "font_end/home.php";
                         }
+                        if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'] > 0)) {
+                            $id = $_GET['id_danhmuc'];
+                        } else {
+                            $id = 0;
+                        }
+                        if (isset($_POST['search']) && ($_POST['search'] != "")) {
+                            $kwy = $_POST['search'];
+                        } else {
+                            $kwy = "";
+                        }
+                        $dssp = load_sanpham($kwy, $id);
+                        $tendm = load_ten_dm($id);
+                        include "font_end/sp_theo_dm.php";
+                    }
       
         default:
             include "font_end/home.php";
