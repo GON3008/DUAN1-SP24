@@ -111,6 +111,24 @@ if (isset($_GET['act'])) {
             $list_bill = load_all_bill1($kwn, 0);
             include "bill/list_bill.php";
             break;
+            case 'listsp':
+                if (isset($_POST['list_find']) && ($_POST['list_find'])) {
+                    if ($_POST['timkiem'] == "") {
+    
+                        $kyw = $_POST['timkiem'];
+                        $id_danhmuc = $_POST['id_danhmuc'];
+                    } else {
+                        $kyw = $_POST['timkiem'];
+                        $id_danhmuc = $_POST['id_danhmuc'];
+                    }
+                } else {
+                    $kyw = '';
+                    $id_danhmuc = 0;
+                }
+                $listsanpham = load_sanpham($kyw, $id_danhmuc);
+                $listDM = load_danh_all();
+                include "sanpham/sanpham_list.php";
+                break;
             case 'updatesp':
                 if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
                     $id_sp = $_POST['id_sp'];
