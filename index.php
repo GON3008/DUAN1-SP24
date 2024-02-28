@@ -289,6 +289,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
                 include "font_end/show_product.php";
                 break;
+                case 'load_sp':
+                    if (isset($_POST['tim']) && ($_POST['tim'])) {
+                        if ($_POST['search'] == '') {
+                            echo '
+                             <script>
+                             function thongbao(){
+                              alert("Xin vui lòng nhập sản phẩm muốn tìm !");
+                             }
+                             thongbao();
+                             </script>
+                             ';
+                            include "font_end/home.php";
+                        }
       
         default:
             include "font_end/home.php";
