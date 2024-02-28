@@ -30,6 +30,14 @@ if (!isset($_SESSION['cart']))
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+        case 'sanphamct':
+            if (isset($_GET["id_sp"]) && ($_GET['id_sp'] > 0)) {
+                $id = $_GET['id_sp'];
+                $one_sp = load_one_sanpham($id);
+                extract($one_sp);
+                $sp_cung_loai = sanpham_cungloai($id, $id_danhmuc);
+                include "font_end/detail.php";
+            }
         case 'go_home':
             $list_bill = load_all_bill1();
             include "font_end/home.php";
