@@ -30,6 +30,10 @@ if (!isset($_SESSION['cart']))
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+        case 'go_home':
+            $list_bill = load_all_bill1();
+            include "font_end/home.php";
+            break;
         case 'login':
             include "font_end/login-register.php";
             break;
