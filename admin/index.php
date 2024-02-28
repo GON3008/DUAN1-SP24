@@ -54,6 +54,29 @@ if (isset($_GET['act'])) {
             $list_bill = load_all_bill1($kwn, 0);
             include "bill/list_bill.php";
             break;
+            case 'updatesp':
+                if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    $id_sp = $_POST['id_sp'];
+                    $id_danhmuc = $_POST['id_danhmuc'];
+                    $name_sp = $_POST['name_sp'];
+                    $price_sp = $_POST['price_sp'];
+                    $mota_sp = $_POST['mota_sp'];
+                    $img_sp = $_FILES['img_sp']['name'];
+                    $taget_div = "../upload/";
+                    $taget_file = $taget_div . basename($_FILES['img_sp']['name']);
+                    // var_dump($_POST);die;
+                    if (move_uploaded_file($_FILES['img_sp']['tmp_name'], $taget_file)) {
+    
+                    } else {
+                    }
+                    update_sanpham($id_sp, $name_sp, $img_sp, $price_sp, $mota_sp, $id_danhmuc);
+                    $thongbao = "Cập nhật thành công";
+                }
+                //    var_dump('OOOOOOOOOOOOOOOO');die;
+                $listDM = load_danh_all();
+                $listsanpham = load_sanpham("", 0);
+                include "sanpham/sanpham_list.php";
+                break;
         case 'tk_sp':
             $list_tk = loadall_thongke();
             include "thongke/list_tk.php";
