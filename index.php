@@ -38,6 +38,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $sp_cung_loai = sanpham_cungloai($id, $id_danhmuc);
                 include "font_end/detail.php";
             }
+            if (isset($_POST['add_to_cart']) && ($_POST['add_to_cart'])) {
+                $id_sp = $_POST['id_sp'];
+                $name_sp = $_POST['name_sp'];
+                $img_sp = $_POST['img_sp'];
+                $price_sp = $_POST['price_sp'];
+                $soluong = $_POST['soluong'];
+                $sp_add_to_cart = [$id_sp, $name_sp, $img_sp, $price_sp, $soluong];
+                array_push($_SESSION['mua_cart'], $sp_add_to_cart);
         case 'go_home':
             $list_bill = load_all_bill1();
             include "font_end/home.php";
