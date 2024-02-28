@@ -28,6 +28,16 @@ if (isset($_GET['act'])) {
             }
             include "danhmuc/danhmuc_add.php";
             break;
+            case 'listdm':
+                $xuatDM = load_danh_all();
+                include "danhmuc/danhmuc_list.php";
+                break;
+            case 'suadm':
+                if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'] > 0)) {
+                    $sua_dm = load_one($_GET['id_danhmuc']);
+                }
+                include "danhmuc/danhmuc_update.php";
+                break;
         case 'don_hang':
             if (isset($_POST['kwn']) && ($_POST['kwn'] != "")) {
                 $kwn = $_POST['kwn'];
