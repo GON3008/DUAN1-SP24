@@ -38,14 +38,25 @@ if (isset($_GET['act'])) {
             }
             include "danhmuc/danhmuc_update.php";
             break;
-            case 'xoadm':
-                if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'])) {
-                    delete_danhmuc($_GET['id_danhmuc']);
-                }
-                $sql = " select * from danhmuc order by id_danhmuc";
-                $xuatDM = pdo_query($sql);
-                include "danhmuc/danhmuc_list.php";
-                break;
+        case 'xoadm':
+            if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'])) {
+                delete_danhmuc($_GET['id_danhmuc']);
+            }
+            $sql = " select * from danhmuc order by id_danhmuc";
+            $xuatDM = pdo_query($sql);
+            include "danhmuc/danhmuc_list.php";
+            break;
+        case 'updatedm':
+            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                $id_danhmuc = $_POST['id'];
+                $name_danhmuc = $_POST['ten'];
+                update_dm($id_danhmuc, $name_danhmuc);
+                $thongbao = "Cập nhật thành công";
+            }
+            $load_dm = load_danh_all();
+            include "danhmuc/danhmuc_update.php";
+            break;
+    
         case 'don_hang':
             if (isset($_POST['kwn']) && ($_POST['kwn'] != "")) {
                 $kwn = $_POST['kwn'];
