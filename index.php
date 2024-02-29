@@ -80,7 +80,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "font_end/my-account.php";
             break;
             case 'log_out':
-                session_unset();
                 $yourURL = "http://localhost/DuAnLapTop/DuAnLapTop/index.php?";
                 echo ("<script>location.href='$yourURL'</script>");
                 include "font_end/my-account.php";
