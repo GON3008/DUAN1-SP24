@@ -30,6 +30,34 @@ if (!isset($_SESSION['cart']))
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+        case 'sanphamct':
+            if (isset($_GET["id_sp"]) && ($_GET['id_sp'] > 0)) {
+                $id = $_GET['id_sp'];
+                $one_sp = load_one_sanpham($id);
+                extract($one_sp);
+                $sp_cung_loai = sanpham_cungloai($id, $id_danhmuc);
+                include "font_end/detail.php";
+            }
+            if (isset($_POST['add_to_cart']) && ($_POST['add_to_cart'])) {
+                $id_sp = $_POST['id_sp'];
+                $name_sp = $_POST['name_sp'];
+                $img_sp = $_POST['img_sp'];
+                $price_sp = $_POST['price_sp'];
+                $soluong = $_POST['soluong'];
+                $sp_add_to_cart = [$id_sp, $name_sp, $img_sp, $price_sp, $soluong];
+                array_push($_SESSION['mua_cart'], $sp_add_to_cart);
+                $_SESSION['cart'] = $soluong;
+                $response = array(
+                    'cartItems' => count($_SESSION['cart'])
+                );
+                echo json_encode($response);
+            }
+            // include "font_end/show_product.php";
+            break;
+        case 'go_home':
+            $list_bill = load_all_bill1();
+            include "font_end/home.php";
+            break;
         case 'login':
             include "font_end/login-register.php";
             break;
@@ -250,7 +278,52 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             break;
 
-       
+            case 'show_product':
+                if (isset($_GET["id_sp"]) && ($_GET['id_sp'] > 0)) {
+                    $id = $_GET['id_sp'];
+                    $one_sp = load_one_sanpham($id);
+                    extract($one_sp);
+                    $sp_cung_loai = sanpham_cungloai($id, $id_danhmuc);
+                    include "font_end/detail.php";
+                }
+                include "font_end/show_product.php";
+                break;
+                case 'load_sp':
+                    if (isset($_POST['tim']) && ($_POST['tim'])) {
+                        if ($_POST['search'] == '') {
+                            echo '
+                             <script>
+                             function thongbao(){
+                              alert("Xin vui lòng nhập sản phẩm muốn tìm !");
+                             }
+                             thongbao();
+                             </script>
+                             ';
+                            include "font_end/home.php";
+                        }
+                        if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'] > 0)) {
+                            $id = $_GET['id_danhmuc'];
+                        } else {
+                            $id = 0;
+                        }
+                        if (isset($_POST['search']) && ($_POST['search'] != "")) {
+                            $kwy = $_POST['search'];
+                        } else {
+                            $kwy = "";
+                        }
+                        $dssp = load_sanpham($kwy, $id);
+                        $tendm = load_ten_dm($id);
+                        include "font_end/sp_theo_dm.php";
+                    }
+                    if (isset($_GET['id_danhmuc']) && ($_GET['id_danhmuc'] > 0)) {
+                        $id = $_GET['id_danhmuc'];
+                    } else {
+                        $id = 0;
+                    }
+                    $dssp = load_sanpham($kwy = "", $id);
+                    $tendm = load_ten_dm($id);
+                    include "font_end/sp_theo_dm.php";
+                    break;
       
         default:
             include "font_end/home.php";
