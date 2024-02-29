@@ -73,18 +73,38 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
                 include "font_end/login-register.php";
                 break;
-        case 'dangky':
-            if (isset($_POST['dangky']) && ($_POST['dangky'])) {
-                $name_tk = $_POST['name_tk'];
-                $pass_tk = $_POST['pass_tk'];
-                $email_tk = $_POST['email_tk'];
-                $address_tk = $_POST['address_tk'];
-                $tel_tk = $_POST['tel_tk'];
-                insert_taikhoan($name_tk, $pass_tk, $email_tk, $address_tk, $tel_tk);
-                $thongbao = "chúc mừng bạn đã đăng ký thành công";
-            }
-            include "font_end/login-register.php";
-            break;
+                case 'dangky':
+                    if (isset($_POST['dangky']) && ($_POST['dangky'])) {
+                        $name_tk = $_POST['name_tk'];
+                        $pass_tk = $_POST['pass_tk'];
+                        $email_tk = $_POST['email_tk'];
+                        $address_tk = $_POST['address_tk'];
+                        $tel_tk = $_POST['tel_tk'];
+                        insert_taikhoan($name_tk, $pass_tk, $email_tk, $address_tk, $tel_tk);
+        
+                        // Automatically log in the user after registration
+                        $checktk = checklogin($name_tk, $pass_tk);
+                        if ($checktk) {
+                            $_SESSION['user'] = $checktk;
+                            echo '<script> 
+                        alert("Đăng ký và đăng nhập thành công");
+                    </script>';
+                            // You can redirect the user to a specific page after login if needed
+                            $yourURL = "index.php?act=go_home";
+                            echo("<script>location.href='$yourURL'</script>");
+                            exit(); // stop further execution
+                        } else {
+                            echo '<script>
+                        alert("Đăng ký thành công, nhưng đăng nhập thất bại");
+                    </script>';
+                        }
+                    } else {
+                        echo '<script>
+                    alert("Đăng ký thất bại");
+                </script>';
+                    }
+                    include "font_end/login-register.php";
+                    break;
             case 'dangnhap':
                 if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
                     $name_tk = $_POST['name_tk'];
