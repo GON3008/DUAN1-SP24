@@ -72,7 +72,21 @@
                                             <strong>Địa chỉ:</strong>Hà Nội.
                                         </a>
                                     </div>
-                               
+                                    <div class="single-contact-info">
+                                        <span class="contact-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Số Điện thoại:</strong> 0355651625
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                        <span class="contact-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>Email:</strong>admin@fpt.edu.vn
+                                        </a>
                                     </div>
                                 </div>
                             </div>
